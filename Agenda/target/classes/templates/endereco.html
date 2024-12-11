@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agenda</title>
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function confirmDelete(event) {
+            if (!confirm("Você tem certeza de que deseja excluir este post?")) {
+                event.preventDefault(); // Impede a navegação se a confirmação for cancelada
+            }
+        }
+    </script>
+</head>
+<body>
+
+<!--NAVBAR-->
+<ul class="nav nav-tabs justify-content-center nav-justified">
+    <li class="nav-item">
+        <a class="nav-link" th:href="@{/agendamentos}">Agenda</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" th:href="@{/servicos}">Serviços</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" th:href="@{/funcionarios}">Funcionários</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" th:href="@{/clientes}">Clientes</a>
+    </li>
+    <!--
+    <li class="nav-item">
+        <a class="nav-link" th:href="@{/enderecos}">Endereços</a>
+    </li>
+    -->
+</ul>
+
+<div class="container my-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <strong>Enderecos</strong>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+
+                <table class="table table-hover table-bordered align-middle">
+                    <thead class="table-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>CEP</th>
+                        <th>Estado</th> <!--Concatenado com UF-->
+                        <th>Cidade</th>
+                        <th>Rua</th> <!--Concatenado com Numero--> <!--Logradouro-->
+                        <th>Complemento</th>
+                        <th>Ações</th>
+                    </tr>
+
+                    </thead>
+                    <tbody>
+                    <tr th:each="endereco : ${enderecos}">
+                        <td th:text="${endereco.id}"></td>
+                        <td th:text="${endereco.cep}"></td>
+                        <td th:text="${endereco.estado + ' (' + endereco.uf + ')'}"></td>
+                        <td th:text="${endereco.cidade}"></td>
+                        <td th:text="${endereco.logradouro + ' ' + endereco.numero}"></td>
+                        <td th:text="${endereco.complemento}"></td>
+                        <td>
+                            <div class="d-flex justify-content-end gap-2">
+                                <a class="btn btn-sm btn-outline-primary" th:href="@{/endereco/edit/{id}(id=${endereco.id})}">Editar</a> <!--TESTE COMO FAZER SAPORRA-->
+                                <a class="btn btn-sm btn-outline-danger" th:href="@{/endereco/delete/{id}(id=${endereco.id})}" onclick="confirmDelete(event)">Excluir</a>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+            <span class="text-muted">Número de indices: <span th:text="${#lists.size(enderecos)}"></span></span>
+            <a class="btn btn-sm btn-primary" th:href="@{/endereco/add}">Adicionar</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
