@@ -25,7 +25,7 @@ O projeto segue o seguinte diagrama de classes, com entidades como `Agenda`, `Cl
 - **Java 17**
 - **ViaCEP API** (para a consulta de CEPs)
 - **Maven** (gerenciamento de dependências)
-- **Spring Boot(com as seguintes dependências)**
+- **Spring Boot** (com as seguintes dependências)
     - **Spring Data JPA** (para o gerenciamento de repositórios)
     - **Thymeleaf** (para o front-end)
     - **H2 Database** versão 1.4.193** (banco de dados em memória)
