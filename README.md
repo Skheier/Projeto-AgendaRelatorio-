@@ -47,7 +47,7 @@ O projeto segue o seguinte diagrama de classes, com entidades como `Agenda`, `Cl
 
 ## Endpoints Principais em ambas as aplicações
 
-- **http://localhost:8080/agendamentos**: Gerenciamento de agendamentos de serviços.
+- **http://localhost:8080/agendamentos**: Cadastro e gerenciamento de agendamentos de serviços.
 - **http://localhost:8080/clientes**: Cadastro e gerenciamento de clientes.
 - **http://localhost:8080/funcionarios**: Cadastro e gerenciamento de funcionários.
 - **http://localhost:8080/servicos**: Cadastro e gerenciamento de novos serviços.
